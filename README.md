@@ -1,0 +1,2 @@
+# UAS_STRUKTURDATA
+projek untuk UAS SDA
