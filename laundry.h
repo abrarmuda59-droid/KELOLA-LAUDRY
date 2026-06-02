@@ -31,3 +31,17 @@ typedef struct {
 } Stack;
 
 extern int nextId;
+
+
+
+
+// SORTING (sorting.c)
+void shellSort(Queue* q);
+void tampilUrutBerdasarkanBeratDariQueue(Queue *q);
+void quickSortByDate(Laundry* arr[], int low, int high);
+
+// FILE I/O (fileio.c)
+int login();
+void lihatHarga();
+void simpanData(Queue* q, Stack* s);
+void loadData(Queue* q, Stack* s);
