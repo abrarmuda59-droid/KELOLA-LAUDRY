@@ -1,0 +1,33 @@
+#ifndef LAUNDRY_H
+#define LAUNDRY_H
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#define MAX_NAMA 50
+#define FILE_DATA "data_laundry.txt"
+
+typedef struct Laundry {
+    int id;
+    char nama[MAX_NAMA];
+    char jenis[10];
+    float berat;
+    int harga;
+    char tanggalMasuk[11];
+    char tanggalSelesai[11];
+    struct Laundry* next;
+} Laundry;
+
+typedef struct {
+    Laundry* front;
+    Laundry* rear;
+    int count;
+} Queue;
+
+typedef struct {
+    Laundry* data[100];
+    int top;
+} Stack;
+
+extern int nextId;
