@@ -56,3 +56,13 @@ int login();
 void lihatHarga();
 void simpanData(Queue* q, Stack* s);
 void loadData(Queue* q, Stack* s);
+
+// UTILITY (util.c)
+int hitungHarga(float berat, char* jenis);
+void tampilJadwal(Queue* q, Stack* s);
+void freeAllMemory(Queue* q, Stack* s);
+void hitungTanggalSelesai(char *tglMasuk, char *tglSelesai, int tambahHari);
+int compareDate(char *tgl1, char *tgl2);
+int validasiTanggal(char *tgl);
+
+#endif
