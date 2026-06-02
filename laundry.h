@@ -32,8 +32,19 @@ typedef struct {
 
 extern int nextId;
 
+// QUEUE (queue.c)
+void initQueue(Queue* q);
+int isEmptyQueue(Queue* q);
+void enqueue(Queue* q, Laundry* node);
+Laundry* dequeueByID(Queue* q, int id);
+void tampilQueue(Queue* q);
 
-
+// STACK (stack.c)
+void initStack(Stack* s);
+int isEmptyStack(Stack* s);
+void pushStack(Stack* s, Laundry* node);
+void tampilStack(Stack* s);
+void tampilTransaksiTerbanyak(Stack* s);
 
 // SORTING (sorting.c)
 void shellSort(Queue* q);
