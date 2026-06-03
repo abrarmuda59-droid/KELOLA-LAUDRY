@@ -5,7 +5,6 @@ int main() {
     Stack riwayat;
     initQueue(&antrian);
     initStack(&riwayat);
-    
     loadData(&antrian, &riwayat);
     
     int role = login();
