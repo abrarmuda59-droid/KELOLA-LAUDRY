@@ -58,3 +58,27 @@ int main() {
                     while (!tanggalValid) {
                         printf("Tanggal Masuk (DD/MM/YYYY): ");
                         scanf("%s", tanggalMasuk);
+
+ if (validasiTanggal(tanggalMasuk)) {
+                            tanggalValid = 1;
+                        } else {
+                            printf("\nTANGGAL TIDAK VALID! Coba lagi.\n");
+                            printf("   Contoh benar: 15/11/2026 atau 31/12/2026\n\n");
+                        }
+                    }
+                    
+                    sscanf(tanggalMasuk, "%d/%d/%d", &day, &month, &year);
+                    
+                    int tambahHari = (strcmp(jenis, "express") == 0) ? 1 : 3;
+                    hitungTanggalSelesai(tanggalMasuk, tanggalSelesai, tambahHari);
+                    
+                    Laundry* baru = (Laundry*)malloc(sizeof(Laundry));
+                    baru->id = nextId++;
+                    strcpy(baru->nama, nama);
+                    strcpy(baru->jenis, jenis);
+                    baru->berat = berat;
+                    baru->harga = hitungHarga(berat, jenis);
+                    strcpy(baru->tanggalMasuk, tanggalMasuk);
+                    strcpy(baru->tanggalSelesai, tanggalSelesai);
+                    baru->next = NULL;
+                    
