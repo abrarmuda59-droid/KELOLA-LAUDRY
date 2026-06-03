@@ -8,7 +8,7 @@ int main() {
     
     loadData(&antrian, &riwayat);
     
-int role = login();
+    int role = login();
     if (role == 0) return 1;
     
     int pilih;
