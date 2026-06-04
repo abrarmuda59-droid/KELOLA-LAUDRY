@@ -48,3 +48,28 @@ void simpanData(Queue* q, Stack* s) {
     while (curr) {
         fprintf(f, "Q|%d|%s|%s|%.1f|%d|%s|%s\n", 
                 curr->id, curr->nama, curr->jenis,
+curr->berat, curr->harga, 
+                curr->tanggalMasuk, curr->tanggalSelesai);
+        curr = curr->next;
+    }
+    
+    for (int i = 0; i <= s->top; i++) {
+        fprintf(f, "S|%d|%s|%s|%.1f|%d|%s|%s\n", 
+                s->data[i]->id, s->data[i]->nama, s->data[i]->jenis,
+                s->data[i]->berat, s->data[i]->harga,
+                s->data[i]->tanggalMasuk, s->data[i]->tanggalSelesai);
+    }
+    fclose(f);
+    printf("Data berhasil disimpan\n");
+}
+
+void loadData(Queue* q, Stack* s) {
+    FILE* f = fopen(FILE_DATA, "r");
+    if (!f) {
+        printf("File data_laundry.txt tidak ditemukan, memulai data baru\n");
+        return;
+    }
+    
+    char tipe;
+    int id, harga, maxId = 0;
+    char nama[50], jenis[10], tglMasuk[11], tglSelesai[11];
