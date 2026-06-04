@@ -73,3 +73,28 @@ void loadData(Queue* q, Stack* s) {
     char tipe;
     int id, harga, maxId = 0;
     char nama[50], jenis[10], tglMasuk[11], tglSelesai[11];
+
+float berat;
+    
+    while (fscanf(f, " %c|%d|%[^|]|%[^|]|%f|%d|%[^|]|%[^\n]\n", 
+                  &tipe, &id, nama, jenis, &berat, &harga, 
+                  tglMasuk, tglSelesai) == 8) {
+        Laundry* baru = (Laundry*)malloc(sizeof(Laundry));
+        baru->id = id;
+        strcpy(baru->nama, nama);
+        strcpy(baru->jenis, jenis);
+        baru->berat = berat;
+        baru->harga = harga;
+        strcpy(baru->tanggalMasuk, tglMasuk);
+        strcpy(baru->tanggalSelesai, tglSelesai);
+        baru->next = NULL;
+        
+        if (tipe == 'Q') enqueue(q, baru);
+        else if (tipe == 'S') pushStack(s, baru);
+        
+        if (id > maxId) maxId = id;
+    }
+    nextId = maxId + 1;
+    fclose(f);
+    printf("Data berhasil dimuat\n");
+}
