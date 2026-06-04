@@ -69,7 +69,8 @@ Algoritma yang dapat digunakan:
 
 * Merge Sort
 * Quick Sort
-
+* Shell Sort
+  
 ### 6. Pencarian Data
 
 * Cari pelanggan berdasarkan nama.
@@ -178,7 +179,7 @@ Masuk ke Stack Riwayat
 
 | No | Nama                     | Peran                    |
 | -- | --------------           | ------------------------ |
-| 1  | Abrar Muda               | Project Lead             |
+| 1  | Abrar Muda               | Bussines Process Analyst |
 | 2  | Arinal Haq               | Algorythm Analist        |
 | 3  | Kayla Adila Farija Atika | System Designer          |
 | 4  | Syella Zikra Arifa       | Future Planner           |
