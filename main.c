@@ -40,3 +40,45 @@ int main() {
                 bacaString("Nama: ", nama, MAX_NAMA);
                 berat = bacaFloat("Berat (kg): ");
                 if (berat < 2) berat = 2;
+                j = bacaInt("Jenis (1.Reguler/2.Express): ");
+                if (j == 1) strcpy(jenis, "reguler");
+                else strcpy(jenis, "express");
+                
+                int valid = 0;
+                while (!valid) {
+                    bacaString("Tanggal Masuk (DD/MM/YYYY): ", tglMasuk, 11);
+                    if (validasiTanggal(tglMasuk)) valid = 1;
+                }
+                
+                int tambahHari = (strcmp(jenis, "express") == 0) ? 1 : 3;
+                hitungTanggalSelesai(tglMasuk, tglSelesai, tambahHari);
+                
+                Laundry* baru = (Laundry*)malloc(sizeof(Laundry));
+                baru->id = nextId++;
+                strcpy(baru->nama, nama);
+                strcpy(baru->jenis, jenis);
+                baru->berat = berat;
+                baru->harga = hitungHarga(berat, jenis);
+                strcpy(baru->tanggalMasuk, tglMasuk);
+                strcpy(baru->tanggalSelesai, tglSelesai);
+                baru->next = NULL;
+                
+                enqueue(&antrian, baru);
+                simpanData(&antrian, &riwayat);
+                printf("\nBERHASIL! ID:%d | Total: Rp%d\n", baru->id, baru->harga);
+            }
+            else if (pilih == 2) {
+                if (isEmptyQueue(&antrian)) {
+                    printf("\nAntrian kosong\n");
+                } else {
+                    int id = bacaInt("Masukkan ID Laundry: ");
+                    Laundry* proses = dequeueByID(&antrian, id);
+                    if (proses) {
+                        pushStack(&riwayat, proses);
+                        simpanData(&antrian, &riwayat);
+                        printf("\nLaundry ID %d selesai\n", id);
+                    } else {
+                        printf("\nID %d tidak ditemukan\n", id);
+                    }
+                }
+            }
