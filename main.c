@@ -5,6 +5,7 @@ int main() {
     Stack riwayat;
     initQueue(&antrian);
     initStack(&riwayat);
+    
     loadData(&antrian, &riwayat);
     
     int role = login();
@@ -13,72 +14,29 @@ int main() {
     int pilih;
     do {
         if (role == 1) {
-            printf("\n====================================\n");
-            printf("          MENU ADMIN                \n");
-            printf("====================================\n");
-            printf("1. tambah laundry\n");
-            printf("2. proses laundry\n");
-            printf("3. edit pesanan\n");
-            printf("4. lihat antrian\n");
-            printf("5. lihat riwayat\n");
-            printf("6. daftar harga\n");
-            printf("7. tampilkan antrian berdasarkan jenis layanan\n");
-            printf("8. sorting berdasarkan berat\n");
-            printf("9. jadwal pengambilan\n");
-            printf("0. keluar\n");
-            printf("====================================\n");
+            printf("\n+====================+\n");
+            printf("|     MENU ADMIN      |\n");
+            printf("+====================+\n");
+            printf("| 1. Tambah Laundry   |\n");
+            printf("| 2. Tandai Selesai   |\n");
+            printf("| 3. Edit Pesanan     |\n");
+            printf("| 4. Lihat Antrian    |\n");
+            printf("| 5. Lihat Riwayat    |\n");
+            printf("| 6. Daftar Harga     |\n");
+            printf("| 7. Antrian by Jenis |\n");
+            printf("| 8. Antrian by Berat |\n");
+            printf("| 9. Jadwal Ambil     |\n");
+            printf("| 0. Keluar           |\n");
+            printf("+====================+\n");
             printf("Pilih: ");
-
- if (scanf("%d", &pilih) != 1) {
-                printf("\nPilihan tidak valid!\n");
-                while (getchar() != '\n');
-                continue;
-            }
             
-            switch(pilih) {
-                case 1: {
-                    char nama[50], jenis[10], tanggalMasuk[11], tanggalSelesai[11];
-                    int j, day, month, year;
-                    float berat;
-                    
-                    printf("\nNama: ");
-                    scanf(" %[^\n]", nama);
-                    printf("Berat (kg): ");
-                    scanf("%f", &berat);
-                    if (berat < 2) berat = 2;
-                    printf("Jenis (1.Reguler/2.Express): ");
-                    scanf("%d", &j);
-                    if (j != 1 && j != 2) {
-                        printf("\nPilihan tidak ada!\n");
-                        break;
-                    }
-                    strcpy(jenis, (j == 1) ? "reguler" : "express");
-                    
-                    int tanggalValid = 0;
-                    while (!tanggalValid) {
-                        printf("Tanggal Masuk (DD/MM/YYYY): ");
-                        scanf("%s", tanggalMasuk);
-
- if (validasiTanggal(tanggalMasuk)) {
-                            tanggalValid = 1;
-                        } else {
-                            printf("\nTANGGAL TIDAK VALID! Coba lagi.\n");
-                            printf("   Contoh benar: 15/11/2026 atau 31/12/2026\n\n");
-                        }
-                    }
-                    
-                    sscanf(tanggalMasuk, "%d/%d/%d", &day, &month, &year);
-                    
-                    int tambahHari = (strcmp(jenis, "express") == 0) ? 1 : 3;
-                    hitungTanggalSelesai(tanggalMasuk, tanggalSelesai, tambahHari);
-                    
-                    Laundry* baru = (Laundry*)malloc(sizeof(Laundry));
-                    baru->id = nextId++;
-                    strcpy(baru->nama, nama);
-                    strcpy(baru->jenis, jenis);
-                    baru->berat = berat;
-                    baru->harga = hitungHarga(berat, jenis);
-                    strcpy(baru->tanggalMasuk, tanggalMasuk);
-                    strcpy(baru->tanggalSelesai, tanggalSelesai);
-                    baru->next = NULL;
-                    
+            pilih = bacaInt("");
+            
+            if (pilih == 1) {
+                char nama[50], jenis[10], tglMasuk[11], tglSelesai[11];
+                float berat;
+                int j;
+                
+                bacaString("Nama: ", nama, MAX_NAMA);
+                berat = bacaFloat("Berat (kg): ");
+                if (berat < 2) berat = 2;
