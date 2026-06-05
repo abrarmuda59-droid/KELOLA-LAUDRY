@@ -129,12 +129,14 @@ KelolaLaundry/
 
   * Array
   * Linked List
-  * Queue
-  * Stack
+  * Queue berbasis Linked list
+  * Stack Berbasis Array
+  
 * Algoritma:
 
   * Merge Sort
   * Quick Sort
+  * Shell Sort
 
 ---
 
