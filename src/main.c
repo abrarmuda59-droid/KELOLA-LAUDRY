@@ -20,12 +20,13 @@ int main() {
             printf("| 1. Tambah Laundry   |\n");
             printf("| 2. Tandai Selesai   |\n");
             printf("| 3. Edit Pesanan     |\n");
-            printf("| 4. Lihat Antrian    |\n");
-            printf("| 5. Lihat Riwayat    |\n");
-            printf("| 6. Daftar Harga     |\n");
-            printf("| 7. Antrian by Jenis |\n");
-            printf("| 8. Antrian by Berat |\n");
-            printf("| 9. Jadwal Ambil     |\n");
+            printf("| 4. Hapus Pesanan    |\n");
+            printf("| 5. Lihat Antrian    |\n");
+            printf("| 6. Lihat Riwayat    |\n");
+            printf("| 7. Daftar Harga     |\n");
+            printf("| 8. Antrian by Jenis |\n");
+            printf("| 9. Antrian by Berat |\n");
+            printf("| 10. Jadwal Ambil    |\n");
             printf("| 0. Keluar           |\n");
             printf("+====================+\n");
             printf("Pilih: ");
@@ -40,7 +41,14 @@ int main() {
                 bacaString("Nama: ", nama, MAX_NAMA);
                 berat = bacaFloat("Berat (kg): ");
                 if (berat < 2) berat = 2;
-                j = bacaInt("Jenis (1.Reguler/2.Express): ");
+                
+                do {
+                    j = bacaInt("Jenis (1.Reguler/2.Express): ");
+                    if (j != 1 && j != 2) {
+                        printf("Pilihan hanya 1 atau 2!\n");
+                    }
+                } while (j != 1 && j != 2);
+                
                 if (j == 1) strcpy(jenis, "reguler");
                 else strcpy(jenis, "express");
                 
