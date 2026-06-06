@@ -155,4 +155,80 @@ int main() {
                     }
                     
                     printf("\n--- RIWAYAT ---\n");
-                    no = 1;
+                    no = 1; 
+                    for (int i = riwayat.top; i >= 0; i--) {
+                        printf("%d. ID:%d | %s | %s | %.1fkg\n", no++, riwayat.data[i]->id, riwayat.data[i]->nama, riwayat.data[i]->jenis, riwayat.data[i]->berat);
+                    }
+                    
+                    int id = bacaInt("\nMasukkan ID pesanan yang akan dihapus: ");
+                    hapusPesanan(&antrian, &riwayat, id);
+                }
+            }
+            else if (pilih == 5) {
+                tampilQueue(&antrian);
+            }
+            else if (pilih == 6) {
+                tampilStack(&riwayat);
+            }
+            else if (pilih == 7) {
+                lihatHarga();
+            }
+            else if (pilih == 8) {
+                if (isEmptyQueue(&antrian)) {
+                    printf("\nAntrian kosong\n");
+                } else {
+                    shellSort(&antrian);
+                    simpanData(&antrian, &riwayat);
+                    tampilQueue(&antrian);
+                }
+            }
+            else if (pilih == 9) {
+                if (isEmptyQueue(&antrian)) {
+                    printf("\nAntrian kosong\n");
+                } else {
+                    mergeSortByWeight(&antrian);
+                    tampilQueue(&antrian);
+                }
+            }
+            else if (pilih == 10) {
+                tampilJadwal(&antrian, &riwayat);
+            }
+            else if (pilih == 0) {
+                simpanData(&antrian, &riwayat);
+                freeAllMemory(&antrian, &riwayat);
+                printf("\nTerima kasih\n");
+            }
+            else {
+                printf("\nPilihan tidak ada!\n");
+            }
+        } else {
+            printf("\n+====================+\n");
+            printf("|     MENU USER       |\n");
+            printf("+====================+\n");
+            printf("| 1. Lihat Antrian    |\n");
+            printf("| 2. Lihat Harga      |\n");
+            printf("| 3. Jadwal Ambil     |\n");
+            printf("| 0. Keluar           |\n");
+            printf("+====================+\n");
+            printf("Pilih: ");
+            
+            pilih = bacaInt("");
+            
+            if (pilih == 1) {
+                tampilQueue(&antrian);
+            } else if (pilih == 2) {
+                lihatHarga();
+            } else if (pilih == 3) {
+                tampilJadwal(&antrian, &riwayat);
+            } else if (pilih == 0) {
+                freeAllMemory(&antrian, &riwayat);
+                printf("\nTerima kasih\n");
+            } else {
+                printf("\nPilihan tidak ada!\n");
+            }
+        }
+    } while(pilih != 0);
+    
+    return 0;
+}
+
