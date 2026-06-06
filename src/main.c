@@ -90,3 +90,69 @@ int main() {
                     }
                 }
             }
+            else if (pilih == 3) {
+                if (isEmptyQueue(&antrian)) {
+                    printf("\nAntrian kosong\n");
+                } else {
+                    printf("\n=== DAFTAR ANTRIAN ===\n");
+                    Laundry* curr = antrian.front;
+                    int no = 1;
+                    while (curr) {
+                        printf("%d. ID:%d | %s | %s | %.1fkg\n", no++, curr->id, curr->nama, curr->jenis, curr->berat);
+                        curr = curr->next;
+                    }
+                    
+                    int id = bacaInt("\nMasukkan ID yang akan diedit: ");
+                    
+                    Laundry* target = antrian.front;
+                    while (target && target->id != id) target = target->next;
+                    
+                    if (!target) {
+                        printf("\nID %d tidak ditemukan\n", id);
+                    } else {
+                        char namaBaru[50], jenisBaru[10];
+                        float beratBaru;
+                        int j;
+                        
+                        printf("\nDATA LAMA: %s | %.1f kg | %s\n", target->nama, target->berat, target->jenis);
+                        
+                        bacaString("Nama baru: ", namaBaru, MAX_NAMA);
+                        strcpy(target->nama, namaBaru);
+                        
+                        beratBaru = bacaFloat("Berat baru (kg): ");
+                        if (beratBaru < 2) beratBaru = 2;
+                        target->berat = beratBaru;
+                        
+                        do {
+                            j = bacaInt("Jenis baru (1.Reguler/2.Express): ");
+                            if (j != 1 && j != 2) printf("Pilihan hanya 1 atau 2!\n");
+                        } while (j != 1 && j != 2);
+                        
+                        if (j == 1) strcpy(jenisBaru, "reguler");
+                        else strcpy(jenisBaru, "express");
+                        strcpy(target->jenis, jenisBaru);
+                        
+                        target->harga = hitungHarga(target->berat, target->jenis);
+                        int tambahHari = (strcmp(target->jenis, "express") == 0) ? 1 : 3;
+                        hitungTanggalSelesai(target->tanggalMasuk, target->tanggalSelesai, tambahHari);
+                        
+                        simpanData(&antrian, &riwayat);
+                        printf("\nDATA BERHASIL DIUPDATE!\n");
+                    }
+                }
+            }
+            else if (pilih == 4) {
+                if (isEmptyQueue(&antrian) && isEmptyStack(&riwayat)) {
+                    printf("\nTidak ada data laundry\n");
+                } else {
+                    printf("\n=== DAFTAR PESANAN ===\n");
+                    printf("\n--- ANTRIAN ---\n");
+                    Laundry* curr = antrian.front;
+                    int no = 1;
+                    while (curr) {
+                        printf("%d. ID:%d | %s | %s | %.1fkg\n", no++, curr->id, curr->nama, curr->jenis, curr->berat);
+                        curr = curr->next;
+                    }
+                    
+                    printf("\n--- RIWAYAT ---\n");
+                    no = 1;
