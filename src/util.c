@@ -40,3 +40,34 @@ int isKabisat(int year) {
     if (year % 4 == 0) return 1;
     return 0;
 }
+
+int getMaxDay(int month, int year) {
+    if (month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12) {
+        return 31;
+    }
+    else if (month == 4 || month == 6 || month == 9 || month == 11) {
+        return 30;
+    }
+    else {
+        if (isKabisat(year)) return 29;
+        else return 28;
+    }
+}
+
+void hitungTanggalSelesai(char *tglMasuk, char *tglSelesai, int tambahHari) {
+    int day, month, year;
+    sscanf(tglMasuk, "%d/%d/%d", &day, &month, &year);
+    
+    day += tambahHari;
+    
+    while (day > getMaxDay(month, year)) {
+        day -= getMaxDay(month, year);
+        month++;
+        if (month > 12) {
+            month = 1;
+            year++;
+        }
+    }
+    
+    sprintf(tglSelesai, "%02d/%02d/%04d", day, month, year);
+}
