@@ -40,13 +40,13 @@ Pastikan compiler GCC telah terpasang.
 ### Linux / macOS
 
 ```bash
-gcc *.c -o laundry
+gcc src/*.c -Iinclude -o kelolalaundry
 ```
 
 ### Windows (MinGW)
 
 ```bash
-gcc *.c -o laundry.exe
+gcc src\*.c -Iinclude -o kelolalaundry.exe
 ```
 
 ---
