@@ -106,3 +106,11 @@ int compareDate(char *tgl1, char *tgl2) {
     if (m1 != m2) return m1 < m2;
     return d1 < d2;
 }
+
+void quickSortByDate(Laundry* arr[], int low, int high) {
+    if (low < high) {
+        int pi = partitionByDate(arr, low, high);
+        quickSortByDate(arr, low, pi - 1);
+        quickSortByDate(arr, pi + 1, high);
+    }
+}
