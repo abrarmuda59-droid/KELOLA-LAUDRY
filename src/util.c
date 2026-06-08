@@ -72,6 +72,42 @@ void hitungTanggalSelesai(char *tglMasuk, char *tglSelesai, int tambahHari) {
     sprintf(tglSelesai, "%02d/%02d/%04d", day, month, year);
 }
 
+int validasiTanggal(char *tgl) {
+    int day, month, year;
+    
+    if (sscanf(tgl, "%d/%d/%d", &day, &month, &year) != 3) {
+        printf("Format salah! Gunakan DD/MM/YYYY\n");
+        return 0;
+    }
+    
+    if (year < 1900 || year > 2100) {
+        printf("Tahun harus 1900-2100\n");
+        return 0;
+    }
+    
+    if (month < 1 || month > 12) {
+        printf("Bulan harus 1-12\n");
+        return 0;
+    }
+    
+    if (day < 1) {
+        printf("Hari minimal 1\n");
+        return 0;
+    }
+    
+    int maxDay = getMaxDay(month, year);
+    
+    if (day > maxDay) {
+        if (month == 2 && day == 29) {
+            printf("Tahun %d BUKAN tahun kabisat, Februari hanya 28 hari\n", year);
+        } else {
+            printf("Bulan %d tahun %d hanya memiliki %d hari\n", month, year, maxDay);
+        }
+        return 0;
+    }
+    
+    return 1;
+}
 
 void tampilJadwal(Queue* q, Stack* s) {
     printf("\n=== JADWAL PENGAMBILAN ===\n");
