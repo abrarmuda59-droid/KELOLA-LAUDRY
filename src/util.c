@@ -71,3 +71,38 @@ void hitungTanggalSelesai(char *tglMasuk, char *tglSelesai, int tambahHari) {
     
     sprintf(tglSelesai, "%02d/%02d/%04d", day, month, year);
 }
+
+
+void tampilJadwal(Queue* q, Stack* s) {
+    printf("\n=== JADWAL PENGAMBILAN ===\n");
+    
+    Laundry* belumSelesai[100];
+    int count = 0;
+    Laundry* curr = q->front;
+    while (curr) {
+        belumSelesai[count++] = curr;
+        curr = curr->next;
+    }
+    
+    if (count > 1) {
+        quickSortByDate(belumSelesai, 0, count - 1);
+    }
+    
+    printf("--- BELUM SELESAI (diurutkan dari paling cepat) ---\n");
+    for (int i = 0; i < count; i++) {
+        printf("%d. ID:%d | %s | %s | Selesai: %s\n", 
+               i+1, belumSelesai[i]->id, belumSelesai[i]->nama, 
+               belumSelesai[i]->jenis, belumSelesai[i]->tanggalSelesai);
+    }
+    
+    if (!isEmptyStack(s)) {
+        printf("\n--- SUDAH SELESAI ---\n");
+        int no = 1;
+        for (int i = s->top; i >= 0; i--) {
+            printf("%d. ID:%d | %s | %s\n", no++, s->data[i]->id, s->data[i]->nama, s->data[i]->jenis);
+        }
+    }
+    if (isEmptyQueue(q) && isEmptyStack(s)) {
+        printf("Tidak ada data\n");
+    }
+}
