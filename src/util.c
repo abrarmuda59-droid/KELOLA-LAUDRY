@@ -142,3 +142,22 @@ void tampilJadwal(Queue* q, Stack* s) {
         printf("Tidak ada data\n");
     }
 }
+void freeAllMemory(Queue* q, Stack* s) {
+    int total = 0;
+    Laundry* curr = q->front;
+    while (curr) {
+        Laundry* next = curr->next;
+        free(curr);
+        curr = next;
+        total++;
+    }
+    for (int i = 0; i <= s->top; i++) {
+        free(s->data[i]);
+        total++;
+    }
+    q->front = NULL;
+    q->rear = NULL;
+    q->count = 0;
+    s->top = -1;
+    printf("\nMemori dibebaskan: %d node laundry\n", total);
+}
