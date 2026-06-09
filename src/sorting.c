@@ -119,6 +119,10 @@ int partitionByDate(Laundry* arr[], int low, int high) {
         }
     }
     Laundry* temp = arr[i + 1];
+    arr[i + 1] = arr[high];
+    arr[high] = temp;
+    return i + 1;
+}
 
 void quickSortByDate(Laundry* arr[], int low, int high) {
     if (low < high) {
