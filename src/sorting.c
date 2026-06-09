@@ -107,6 +107,11 @@ int compareDate(char *tgl1, char *tgl2) {
     return d1 < d2;
 }
 
+int partitionByDate(Laundry* arr[], int low, int high) {
+    char* pivot = arr[high]->tanggalSelesai;
+    int i = low - 1;
+    for (int j = low; j < high; j++) {
+
 void quickSortByDate(Laundry* arr[], int low, int high) {
     if (low < high) {
         int pi = partitionByDate(arr, low, high);
