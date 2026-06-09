@@ -38,6 +38,7 @@ int isEmptyQueue(Queue* q);
 void enqueue(Queue* q, Laundry* node);
 Laundry* dequeueByID(Queue* q, int id);
 void tampilQueue(Queue* q);
+int hapusPesanan(Queue* q, Stack* s, int id);
 
 // STACK (stack.c)
 void initStack(Stack* s);
@@ -50,6 +51,8 @@ void tampilTransaksiTerbanyak(Stack* s);
 void shellSort(Queue* q);
 void tampilUrutBerdasarkanBeratDariQueue(Queue *q);
 void quickSortByDate(Laundry* arr[], int low, int high);
+void mergeSortByWeight(Queue* q);
+int partitionByDate(Laundry* arr[], int low, int high);
 
 // FILE I/O (fileio.c)
 int login();
@@ -64,5 +67,9 @@ void freeAllMemory(Queue* q, Stack* s);
 void hitungTanggalSelesai(char *tglMasuk, char *tglSelesai, int tambahHari);
 int compareDate(char *tgl1, char *tgl2);
 int validasiTanggal(char *tgl);
+int bacaInt(char *pesan);
+void bacaString(char *pesan, char *target, int maxLen);
+float bacaFloat(char *pesan);
+
 
 #endif

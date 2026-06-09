@@ -54,8 +54,17 @@ int main() {
                 
                 int valid = 0;
                 while (!valid) {
-                    bacaString("Tanggal Masuk (DD/MM/YYYY): ", tglMasuk, 11);
-                    if (validasiTanggal(tglMasuk)) valid = 1;
+                char tglInput[20];
+                printf("Tanggal Masuk (DD/MM/YYYY): ");
+                fgets(tglInput, sizeof(tglInput), stdin);
+                tglInput[strcspn(tglInput, "\n")] = 0;
+    
+                    if (validasiTanggal(tglInput)) {
+                        strcpy(tglMasuk, tglInput);
+                        valid = 1;
+                    } else {
+                        printf("Coba lagi: ");
+                    }
                 }
                 
                 int tambahHari = (strcmp(jenis, "express") == 0) ? 1 : 3;
