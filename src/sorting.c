@@ -110,7 +110,11 @@ int compareDate(char *tgl1, char *tgl2) {
 int partitionByDate(Laundry* arr[], int low, int high) {
     char* pivot = arr[high]->tanggalSelesai;
     int i = low - 1;
+<<<<<<< HEAD
     for (int j = low; j < high; j++) {
+=======
+    for (int j = low; j < high; j++) { 
+>>>>>>> 105965350e697191afab869e81f59f93b750a643
         if (compareDate(arr[j]->tanggalSelesai, pivot)) {
             i++;
             Laundry* temp = arr[i];
